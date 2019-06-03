@@ -74,9 +74,13 @@ public class Poker {
             System.out.println("\n");
             
             System.out.println("FO-FE");
-            double FoFe = contDif - p.frecuenciaEsperada();
-            double FoFe2 = Math.pow(FoFe, 2);
-            double FoFediv2 = FoFe2/p.frecuenciaEsperada();
+           
+            double FoFe2 = Math.pow(contDif - p.frecuenciaEsperadaDif(), 2) + Math.pow(contDif - p.frecuenciaEsperadaPar(), 2) + Math.pow(contDif - p.frecuenciaEsperadaDosPares(), 2) + Math.pow(contDif - p.frecuenciaEsperadaTercia(), 2) + Math.pow(contDif - p.frecuenciaEsperadaFull(), 2) + Math.pow(contDif - p.frecuenciaEsperadaPoker(), 2) + Math.pow(contDif - p.frecuenciaEsperadaQuintilla(), 2);
+            double FoFediv2 = FoFe2/(p.frecuenciaEsperadaDif()+p.frecuenciaEsperadaDosPares()+p.frecuenciaEsperadaFull()+p.frecuenciaEsperadaPar()+p.frecuenciaEsperadaPoker()+p.frecuenciaEsperadaQuintilla()+p.frecuenciaEsperadaTercia());
+            
+            System.out.println("No pasa la prueba "+FoFediv2);
+            
+            
             double cont = 0;
             
             System.out.println("");
@@ -84,8 +88,27 @@ public class Poker {
         }
 
     }
-    public double frecuenciaEsperada(){
+    public double frecuenciaEsperadaDif(){
         return 100 * 0.3024;
+    }
+    
+    public double frecuenciaEsperadaPar(){
+        return 100 * 0.504;
+    } 
+    public double frecuenciaEsperadaDosPares(){
+        return 100 * 0.108;
+    }
+    public double frecuenciaEsperadaTercia(){
+        return 100 * 0.072;
+    }
+    public double frecuenciaEsperadaFull(){
+        return 100 * 0.009;
+    }
+    public double frecuenciaEsperadaPoker(){
+        return 100 * 0.0045;
+    }
+    public double frecuenciaEsperadaQuintilla(){
+        return 100 * 0.0001;
     }
 
 }
